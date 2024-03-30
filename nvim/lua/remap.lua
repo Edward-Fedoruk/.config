@@ -36,5 +36,5 @@ vim.keymap.set('n', '<A-Down>', ':resize +2<CR>', options)
 vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>', options)
 vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', options)
 -- Indent
-vim.keymap.set('v', '<Tab>', '>gv', { noremap = true, silent = true })
-vim.keymap.set('v', '<S-Tab>', '<gv', { noremap = true, silent = true })
+vim.keymap.set('v', '<Tab>', '>gv', options)
+vim.keymap.set('v', '<S-Tab>', '<gv', options)
