@@ -10,12 +10,40 @@ return {
                     { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
                     { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
                 },
-                opts = {},
+                opts = {
+                    layouts = {
+                        {
+                            elements = {
+                                {
+                                    id = "scopes",
+                                    size = 0.25
+                                },
+                                {
+                                    id = "breakpoints",
+                                    size = 0.25
+                                },
+                            },
+                            position = "left",
+                            size = 40
+                        },
+                        {
+                            elements = {
+                                {
+                                    id = "console",
+                                    size = 1
+                                }
+                            },
+                            position = "bottom",
+                            size = 10
+                        }
+                    },
+                },
                 config = function(_, opts)
                     local dap = require("dap")
                     local dapui = require("dapui")
                     dapui.setup(opts)
                     dap.listeners.after.event_initialized["dapui_config"] = function()
+                        vim.cmd.Neotree('close')
                         dapui.open({})
                     end
                     dap.listeners.before.event_terminated["dapui_config"] = function()
@@ -34,8 +62,10 @@ return {
             end)
             vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
             vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
-            vim.keymap.set('n', '<Leader>dq', function() require('dap').step_out() end)
+            vim.keymap.set('n', '<Leader>do', function() require('dap').step_out() end)
             vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
+            vim.keymap.set('n', '<Leader>dq', function() require('dap').close() end)
+            vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
 
             local dap = require("dap")
 

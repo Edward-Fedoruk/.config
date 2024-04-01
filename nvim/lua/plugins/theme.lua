@@ -38,6 +38,7 @@ return {
             gitsigns = true,
             mason = true,
             treesitter = true,
+            neotest = true,
             neotree = true,
             cmp = true,
             harpoon = true,

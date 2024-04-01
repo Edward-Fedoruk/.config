@@ -25,5 +25,6 @@ return {
         vim.keymap.set('n', '<Leader>t', ':lua require("neotest").run.run()<CR>', options)
         vim.keymap.set('n', '<Leader>tf', ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', options)
         vim.keymap.set('n', '<Leader>td', ':lua require("neotest").run.run({strategy = "dap"})<CR>', options)
+        vim.keymap.set('n', '<Leader>ts', ':lua require("neotest").summary.open()<CR>', options)
     end
 }
