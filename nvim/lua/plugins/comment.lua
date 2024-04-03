@@ -1,8 +1,12 @@
 return {
-    'numToStr/Comment.nvim',
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    opts = {
-        -- add any options here
+    {
+        'JoosepAlviste/nvim-ts-context-commentstring',
     },
-    lazy = false,
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    }
 }
