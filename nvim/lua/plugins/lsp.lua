@@ -12,10 +12,14 @@ return {
             lspconfig.html.setup({
                 capabilities = capabilities
             })
+            lspconfig.cssls.setup({
+                capabilities = capabilities,
+            })
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
                 on_attach = require("lsp-format").on_attach
             })
+
             lspconfig.eslint.setup({
                 capabilities = capabilities,
                 flags = { debounce_text_changes = 500 },
@@ -84,7 +88,7 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "lua_ls", "tsserver" },
+                ensure_installed = { "lua_ls", "tsserver", "cssls" },
             }
         end
     },
