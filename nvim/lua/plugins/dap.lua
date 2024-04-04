@@ -2,6 +2,7 @@ return {
     {
         'mfussenegger/nvim-dap',
         dependencies = {
+            { 'theHamsta/nvim-dap-virtual-text' },
             {
                 "rcarriga/nvim-dap-ui",
                 dependencies = { "nvim-neotest/nvim-nio" },
