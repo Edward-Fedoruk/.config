@@ -1,6 +1,12 @@
 return {
     { "lukas-reineke/lsp-format.nvim" },
     {
+        "antosha417/nvim-lsp-file-operations",
+        config = function()
+            require("lsp-file-operations").setup()
+        end,
+    },
+    {
         'neovim/nvim-lspconfig',
         lazy = false,
         config = function()
