@@ -2,7 +2,10 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
-vim.cmd("set nowrap")
+vim.cmd("set breakindent")
+vim.cmd("set breakindentopt=shift:2")
+vim.cmd("set linebreak")
+-- vim.cmd("set nowrap")
 vim.cmd("set clipboard=unnamed")
 
 vim.opt.scrolloff = 15
