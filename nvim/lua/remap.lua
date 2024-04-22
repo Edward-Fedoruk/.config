@@ -1,4 +1,5 @@
 vim.cmd("set tabstop=4")
+vim.cmd("set termguicolors")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
@@ -8,14 +9,21 @@ vim.cmd("set linebreak")
 -- vim.cmd("set nowrap")
 vim.cmd("set clipboard=unnamed")
 
+
 vim.opt.scrolloff = 15
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
+vim.opt.backup = false
+vim.opt.wb = false
+vim.opt.swapfile = false
+vim.opt.clipboard = 'unnamedplus'
+
 
 vim.g.mapleader = ' '
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
+
 
 local options = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>ex', vim.cmd.Ex)
@@ -41,3 +49,5 @@ vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', options)
 -- Indent
 vim.keymap.set('v', '<Tab>', '>gv', options)
 vim.keymap.set('v', '<S-Tab>', '<gv', options)
+vim.keymap.set('n', 'c', '"_c')
+vim.keymap.set('v', 'c', '"_c')
