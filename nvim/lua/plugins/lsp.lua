@@ -12,9 +12,14 @@ return {
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
-            lspconfig.tsserver.setup({
-                capabilities = capabilities,
+            lspconfig.typos_lsp.setup({
+                init_options = {
+                    diagnosticSeverity = "Hint"
+                }
             })
+
+            -- Enable debug logs for the LSP client. Recommended for debugging only.
+            vim.lsp.set_log_level("debug")
             lspconfig.html.setup({
                 capabilities = capabilities
             })
@@ -94,8 +99,18 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "lua_ls", "tsserver", "cssls" },
+                ensure_installed = { "lua_ls", "cssls" },
             }
         end
     },
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {
+            jsx_close_tag = {
+                enable = true,
+                filetypes = { "javascriptreact", "typescriptreact" },
+            }
+        },
+    }
 }
