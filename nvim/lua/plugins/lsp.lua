@@ -12,14 +12,7 @@ return {
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
-            lspconfig.typos_lsp.setup({
-                init_options = {
-                    diagnosticSeverity = "Hint"
-                }
-            })
 
-            -- Enable debug logs for the LSP client. Recommended for debugging only.
-            vim.lsp.set_log_level("debug")
             lspconfig.html.setup({
                 capabilities = capabilities
             })
@@ -30,7 +23,6 @@ return {
                 capabilities = capabilities,
                 on_attach = require("lsp-format").on_attach
             })
-
             lspconfig.eslint.setup({
                 capabilities = capabilities,
                 flags = { debounce_text_changes = 500 },
@@ -48,6 +40,7 @@ return {
                     end
                 end,
             })
+
             vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float)
             vim.keymap.set('n', '<Leader>h', vim.lsp.buf.hover, {})
             vim.keymap.set('n', '<Leader>d', vim.lsp.buf.definition, {})
