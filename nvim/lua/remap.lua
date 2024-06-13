@@ -52,3 +52,27 @@ vim.keymap.set('v', '<S-Tab>', '<gv', options)
 vim.keymap.set('n', 'c', '"_c')
 vim.keymap.set('v', 'c', '"_c')
 vim.keymap.set('x', '$', 'g_', options)
+
+-- custom shortcuts
+local function termcodes(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+-- JSX shortcuts
+local function select_jsx_tag()
+    -- Perform the navigation and selection sequence
+    local status, result = pcall(function()
+        vim.cmd('normal! 0f<lyiwhv/<\\/' ..
+            termcodes('<C-r>') .. '0' .. '>' .. termcodes('<CR>'))
+    end)
+
+    if not status then
+        local status, result = pcall(function()
+            vim.cmd('normal! /\\/>' .. termcodes('<CR>'))
+        end)
+
+        if not status then
+            vim.notify("unable to select tag", vim.log.levels.ERROR)
+        end
+    end
+end
+vim.keymap.set('n', '<Leader>vjx', select_jsx_tag, options) -- select jsx tag
