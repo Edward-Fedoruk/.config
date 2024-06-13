@@ -48,6 +48,11 @@ return {
                 }
             }
             require "telescope".load_extension "egrepify"
+            vim.keymap.set("n", "<leader>fb",
+                function()
+                    require('telescope.builtin').buffers({ sort_lastused = true, sort_mru = true })
+                end,
+                {})
 
             vim.keymap.set("n", "<leader>ff",
                 function()
