@@ -66,11 +66,11 @@ local function select_jsx_tag()
     end)
 
     if not status then
-        local status, result = pcall(function()
-            vim.cmd('normal! /\\/>' .. termcodes('<CR>'))
+        local selfClosingStatus, result = pcall(function()
+            vim.cmd('normal! /\\/>l' .. termcodes('<CR>'))
         end)
 
-        if not status then
+        if not selfClosingStatus then
             vim.notify("unable to select tag", vim.log.levels.ERROR)
         end
     end
