@@ -9,5 +9,10 @@ return {
             sync_install = false,
             highlight = { enable = true },
         })
+        vim.filetype.add({
+            extension = {
+                ejs = 'html',
+            }
+        })
     end
 }
