@@ -23,22 +23,37 @@ return {
                 capabilities = capabilities,
                 on_attach = require("lsp-format").on_attach
             })
+            local util = require("lspconfig/util")
+
+            local prettier_root_files = { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
+
+            local function root_has_file(files)
+                local cwd = vim.fn.getcwd()
+                for _, file in ipairs(files) do
+                    if util.path.exists(util.path.join(cwd, file)) then
+                        return true
+                    end
+                end
+                return false
+            end
             lspconfig.eslint.setup({
                 capabilities = capabilities,
                 flags = { debounce_text_changes = 500 },
                 on_attach = function(client)
-                    client.server_capabilities.documentFormattingProvider = true
-                    if client.server_capabilities.documentFormattingProvider then
-                        local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            pattern = "*",
-                            callback = function()
-                                vim.lsp.buf.format({})
-                            end,
-                            group = au_lsp,
-                        })
+                    if not root_has_file(prettier_root_files) then
+                        client.server_capabilities.documentFormattingProvider = true
+                        if client.server_capabilities.documentFormattingProvider then
+                            local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                pattern = "*",
+                                callback = function()
+                                    vim.lsp.buf.format({})
+                                end,
+                                group = au_lsp,
+                            })
+                        end
                     end
-                end,
+                end
             })
 
             vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float)
