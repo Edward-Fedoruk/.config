@@ -34,6 +34,7 @@ vim.keymap.set('n', '<Leader>/', ':nohlsearch<CR>', {})
 vim.keymap.set('t', 'jk', '<C-\\><C-n>', { noremap = true })
 vim.keymap.set('n', '<Leader>s', ':w<CR>')
 vim.keymap.set('i', 'jk', '<Esc>', options)
+vim.keymap.set('i', 'kj', '<Esc>', options)
 -- Move lines up
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", options)
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", options)
