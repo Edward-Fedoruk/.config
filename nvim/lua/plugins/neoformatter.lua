@@ -26,7 +26,6 @@ return {
             if has_prettier_config() then
                 vim.cmd("Neoformat")
             else
-                vim.api.nvim_out_write("Skipping Neoformat: No Prettier config file found in project root.\n")
             end
         end
 

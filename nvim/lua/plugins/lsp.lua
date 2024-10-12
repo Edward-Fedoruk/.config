@@ -12,9 +12,34 @@ return {
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
-
+            lspconfig.tsserver.setup({
+                capabilities = capabilities,
+            })
             lspconfig.html.setup({
+                filetypes = { "html", "ejs", "typescriptreact", "javascriptreact" },
                 capabilities = capabilities
+            })
+            lspconfig.emmet_ls.setup({
+                capabilities = capabilities,
+                filetypes = {
+                    "css",
+                    "html",
+                    "javascript",
+                    "javascriptreact",
+                    "less",
+                    "sass",
+                    "typescript",
+                    "scss",
+                    "typescriptreact",
+                },
+                init_options = {
+                    html = {
+                        options = {
+                            -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                            ["bem.enabled"] = true,
+                        },
+                    },
+                },
             })
             lspconfig.cssls.setup({
                 capabilities = capabilities,
@@ -22,6 +47,10 @@ return {
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
                 on_attach = require("lsp-format").on_attach
+            })
+            lspconfig.tailwindcss.setup({
+                capabilities = capabilities,
+                filetypes = { "html", "css", "ejs", "javascriptreact", "typescriptreact", "vue", "svelte" },
             })
             local util = require("lspconfig/util")
 
@@ -36,6 +65,7 @@ return {
                 end
                 return false
             end
+
             lspconfig.eslint.setup({
                 capabilities = capabilities,
                 flags = { debounce_text_changes = 500 },
@@ -107,7 +137,7 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "lua_ls", "cssls" },
+                ensure_installed = { "tailwindcss", "lua_ls", "cssls" },
             }
         end
     },
@@ -120,5 +150,8 @@ return {
                 filetypes = { "javascriptreact", "typescriptreact" },
             }
         },
+        config = function()
+            vim.keymap.set('n', '<Leader>di', ':TSToolsRemoveUnusedImports<CR>', { noremap = true, silent = true })
+        end
     }
 }
