@@ -45,6 +45,12 @@ return {
                         '--smart-case'
                     },
                     path_display = { "smart" },
+                    mappings = {
+                        n = {
+                            ["dd"] = require('telescope.actions').delete_buffer,
+                            ["q"] = require('telescope.actions').close,
+                        }
+                    }
                 }
             }
             require "telescope".load_extension "egrepify"
