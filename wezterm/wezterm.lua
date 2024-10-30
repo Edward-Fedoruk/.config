@@ -1,4 +1,15 @@
 local config = {}
+local wezterm = require 'wezterm';
+
+config.enable_csi_u_key_encoding = true
+
+config.keys = {
+    -- Remap Option + Left Arrow to Alt + B (backward-word)
+    { key = "LeftArrow", mods = "OPT", action = wezterm.action { SendKey = { key = "b", mods = "ALT" } } },
+
+    -- Remap Option + Right Arrow to Alt + F (forward-word)
+    { key = "RightArrow", mods = "OPT", action = wezterm.action { SendKey = { key = "f", mods = "ALT" } } },
+}
 
 config.color_scheme = 'Catppuccin Macchiato'
 config.window_background_opacity = 1
