@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/EFedo1/Documents/csp-ui-member-info/src/containers/in-my-cart'
+let g:netrw_dirhist_4='/Users/EFedo1/Documents/csp-ui-member-info/src/containers'
+let g:netrw_dirhist_3='/Users/EFedo1/Documents/csp-ui-member-info/src'
+let g:netrw_dirhist_2='/Users/EFedo1/Documents/csp-ui-member-info'
+let g:netrw_dirhist_1='/Users/EFedo1/.config/nvim'

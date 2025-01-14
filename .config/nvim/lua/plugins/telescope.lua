@@ -34,6 +34,11 @@ return {
                         },
                     }
                 },
+                pickers = {
+                    find_files = {
+                        hidden = true,
+                    }
+                },
                 defaults = {
                     vimgrep_arguments = {
                         'rg',
@@ -42,9 +47,14 @@ return {
                         '--with-filename',
                         '--line-number',
                         '--column',
-                        '--smart-case'
+                        '--smart-case',
+                        '--hidden',
+                        '--glob', '!.git/'
                     },
                     path_display = { "smart" },
+                    file_ignore_patterns = {
+                        "node_modules", "build", "dist", "yarn.lock", ".git"
+                    },
                     mappings = {
                         n = {
                             ["dd"] = require('telescope.actions').delete_buffer,
