@@ -10,6 +10,5 @@
 	editor = code --wait
 [pull]
 	rebase = true
-[includeIf "gitdir:/Users/EFedo1/Documents/personal/"]
-    path = ~/.gitconfig-personal
+
 

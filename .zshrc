@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source /Users/EFedo1/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+source ./catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
 
 export NVM_DIR="$HOME/.nvm"
