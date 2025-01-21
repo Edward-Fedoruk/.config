@@ -1,3 +1,4 @@
+
 brew_install() {
     echo "\nInstalling $1"
     if brew list $1 &>/dev/null; then
