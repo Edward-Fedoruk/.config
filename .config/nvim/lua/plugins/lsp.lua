@@ -24,11 +24,9 @@ return {
                 filetypes = {
                     "css",
                     "html",
-                    "javascript",
                     "javascriptreact",
                     "less",
                     "sass",
-                    "typescript",
                     "scss",
                     "typescriptreact",
                 },
@@ -137,7 +135,10 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "tailwindcss", "lua_ls", "cssls" },
+                ensure_installed = { "tailwindcss", "lua_ls", "cssls", "tsserver", "emmet_ls" },
+                -- need to be installed on new pc:
+                -- prettier js-debug-adapter
+                automatic_installation = true,
             }
         end
     },

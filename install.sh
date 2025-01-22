@@ -11,6 +11,7 @@ brew_install() {
 brew_install "neovim"
 brew_install "nvm"
 brew_install "lazygit"
+brew_install "ripgrep"
 
 echo "\nInstalling omz"
 if [ -e "$HOME/.oh-my-zsh" ]; then
