@@ -135,7 +135,7 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup {
-                ensure_installed = { "tailwindcss", "lua_ls", "cssls", "tsserver", "emmet_ls" },
+                ensure_installed = { "tailwindcss", "lua_ls", "cssls", "tsserver", "emmet_ls", "eslint" },
                 -- need to be installed on new pc:
                 -- prettier js-debug-adapter
                 automatic_installation = true,
