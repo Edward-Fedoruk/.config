@@ -196,6 +196,11 @@ config.keys = {
         },
     },
     {
+        key = 'c',
+        mods = 'LEADER',
+        action = wezterm.action.CloseCurrentTab { confirm = true },
+    },
+    {
         key = 'r',
         mods = 'LEADER',
         action = wezterm.action.PromptInputLine {
