@@ -1,7 +1,57 @@
 local wezterm = require 'wezterm';
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
 local config = wezterm.config_builder()
+
+config.tab_max_width = 40
+config.use_fancy_tab_bar = false
+
+tabline.setup({
+    options = {
+        icons_enabled = true,
+        theme = 'Catppuccin Mocha',
+        tabs_enabled = true,
+        theme_overrides = {},
+        section_separators = {
+            left = wezterm.nerdfonts.pl_left_hard_divider,
+            right = wezterm.nerdfonts.pl_right_hard_divider,
+        },
+        component_separators = {
+            left = wezterm.nerdfonts.pl_left_soft_divider,
+            right = wezterm.nerdfonts.pl_right_soft_divider,
+        },
+        tab_separators = {
+            left = wezterm.nerdfonts.pl_left_hard_divider,
+            right = wezterm.nerdfonts.pl_right_hard_divider,
+        },
+    },
+    sections = {
+        tabline_a = { 'workspace' },
+        tabline_b = {},
+        tabline_c = { ' ' },
+        tab_active = {
+            'index',
+            { 'process', padding = { left = 0, right = 1 }, icons_only = true },
+            {
+                'tab',
+                icons_enabled = false
+            },
+        },
+        tab_inactive = {
+            'index',
+            { 'process', padding = { left = 0, right = 1 }, icons_only = true },
+            {
+                'tab',
+                icons_enabled = false
+            },
+        },
+        tabline_x = {},
+        tabline_y = { 'datetime', 'battery' },
+        tabline_z = {},
+    },
+    extensions = {},
+})
 
 config.enable_csi_u_key_encoding = true
 
@@ -25,11 +75,7 @@ config.window_padding = {
 }
 config.font_size = 14.0
 
-wezterm.on('update-right-status', function(window, pane)
-    window:set_right_status(window:active_workspace())
-end)
-
-filter = function(tbl, callback)
+local filter = function(tbl, callback)
     local filt_table = {}
 
     for i, v in ipairs(tbl) do
@@ -40,7 +86,7 @@ filter = function(tbl, callback)
     return filt_table
 end
 
-kill_workspace = function(workspace)
+local kill_workspace = function(workspace)
     local success, stdout =
         wezterm.run_child_process({ "/opt/homebrew/bin/wezterm", "cli", "list", "--format=json" })
 
@@ -102,7 +148,7 @@ config.keys = {
         end),
     },
     {
-        key = 'r',
+        key = 'R',
         mods = 'LEADER',
         action = wezterm.action.PromptInputLine {
             description = wezterm.format {
@@ -149,6 +195,23 @@ config.keys = {
             end),
         },
     },
+    {
+        key = 'r',
+        mods = 'LEADER',
+        action = wezterm.action.PromptInputLine {
+            description = 'Enter new name for tab',
+            initial_value = 'My Tab Name',
+            action = wezterm.action_callback(function(window, pane, line)
+                -- line will be `nil` if they hit escape without entering anything
+                -- An empty string if they just hit enter
+                -- Or the actual line of text they wrote
+                if line then
+                    window:active_tab():set_title(line)
+                end
+            end),
+        },
+    },
+
 
     -- Remap Option + Left Arrow to Alt + B (backward-word)
     { key = "LeftArrow",  mods = "OPT", action = wezterm.action { SendKey = { key = "b", mods = "ALT" } } },
