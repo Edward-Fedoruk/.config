@@ -216,18 +216,10 @@ config.keys = {
             end),
         },
     },
-
-
-    -- Remap Option + Left Arrow to Alt + B (backward-word)
-    { key = "LeftArrow",  mods = "OPT", action = wezterm.action { SendKey = { key = "b", mods = "ALT" } } },
-
-    -- Remap Option + Right Arrow to Alt + F (forward-word)
-    { key = "RightArrow", mods = "OPT", action = wezterm.action { SendKey = { key = "f", mods = "ALT" } } },
 }
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 
--- you can put the rest of your Wezterm config here
 smart_splits.apply_to_config(config, {
     direction_keys = {
         move = { 'h', 'j', 'k', 'l' },
