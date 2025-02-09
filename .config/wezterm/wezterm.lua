@@ -7,12 +7,13 @@ local config = wezterm.config_builder()
 config.tab_max_width = 40
 config.use_fancy_tab_bar = false
 
+config.show_new_tab_button_in_tab_bar = false
+
 tabline.setup({
     options = {
         icons_enabled = true,
         theme = 'Catppuccin Mocha',
         tabs_enabled = true,
-        theme_overrides = {},
         section_separators = {
             left = wezterm.nerdfonts.pl_left_hard_divider,
             right = wezterm.nerdfonts.pl_right_hard_divider,
@@ -22,8 +23,15 @@ tabline.setup({
             right = wezterm.nerdfonts.pl_right_soft_divider,
         },
         tab_separators = {
-            left = wezterm.nerdfonts.pl_left_hard_divider,
-            right = wezterm.nerdfonts.pl_right_hard_divider,
+            left = '',
+            right = '',
+        },
+        theme_overrides = {
+            tab = {
+                active = { fg = '#89b4fa', bg = '#313244' },
+                inactive = { fg = '#cdd6f4', bg = '#232634' },
+                inactive_hover = { fg = '#f5c2e7', bg = '#313244' },
+            }
         },
     },
     sections = {
@@ -32,7 +40,7 @@ tabline.setup({
         tabline_c = { ' ' },
         tab_active = {
             'index',
-            { 'process', padding = { left = 0, right = 1 }, icons_only = true },
+            { 'process', padding = { left = 0, right = 0 }, icons_only = true },
             {
                 'tab',
                 icons_enabled = false
@@ -40,7 +48,7 @@ tabline.setup({
         },
         tab_inactive = {
             'index',
-            { 'process', padding = { left = 0, right = 1 }, icons_only = true },
+            { 'process', padding = { left = 0, right = 0 }, icons_only = true },
             {
                 'tab',
                 icons_enabled = false
